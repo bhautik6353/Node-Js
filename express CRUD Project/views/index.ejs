@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      
+    }
+
+    form {
+      background: #ffffff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    form input:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+
+    form button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+
+    table {
+      width: 80%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      margin-left: 170px;
+      background: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: white;
+      font-size: 16px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    td button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    td button:hover {
+      background-color: #0056b3;
+    }
+
+    td button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    td button a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h1>Welcome To Book Store</h1>
+    <form action="/addData" method="post">
+      <input type="text" placeholder="Enter Book Name" name="name" required>
+      <input type="text" placeholder="Enter Book Author" name="Author" required>
+      <input type="number" placeholder="Enter Book Price ($)" name="Price" required>
+      <input type="date" placeholder="Enter Book Release Date" name="Date" required>
+      <button type="submit">Add Book</button>
+    </form>
+  </center>
+
+  <table>
+    <tr>
+      <th>Book Name</th>
+      <th>Book Author</th>
+      <th>Book Price</th>
+      <th>Book Release</th>
+      <th colspan="2">Actions</th>
+    </tr>
+
+    <% Booklist.map((e, i) => { %>
+      <tr>
+        <td><%= e.name %></td>
+        <td><%= e.Author %></td>
+        <td>$<%= e.Price %></td>
+        <td><%= e.Date %></td>
+        <td>
+          <button><a href="/editData/<%= e.id %>">Edit</a></button>
+          <button><a href="/deleteData?id=<%= e.id %>">Delete</a></button>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>
